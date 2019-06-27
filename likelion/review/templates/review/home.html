@@ -1,0 +1,45 @@
+<head>
+    <title>HOME</title>
+    <style type="text/css">
+        .right{
+            float:right;
+        }
+
+        .left{
+            float:left;
+        }
+    </style>
+</head>
+
+<body>
+    <br>
+    <h1 align="center">HOME</h1>
+    <hr>
+
+    {% if user.is_active %}
+    <div class="left"><p align="left">{{ user.username }}</p></div>
+    <div class="right"><p align="right"><a href="{% url 'logout' %}">로그아웃</a></p></div>
+    {% else %}
+    <div class="left"><p align="left">로그인하지 않으셨습니다.</p></div>
+    <div class="right">
+        <p align="right">
+            <a href="{% url 'accounts:signup' %}">회원가입</a>
+            <a href="{% url 'login' %}">로그인</a>
+        </p>
+    </div>
+    {% endif %}
+    <br><br><br><hr>
+    <br><br>
+
+    {% for review in reviews.all %}
+        <div>
+            {% if user.is_active %}
+            <h2 align="center"><a href="{% url 'detail' review.id %}">{{ review.title }}</a></h2>
+            {% else %}
+            <h2 align="center"><a href="{% url 'accounts:signup' %}">{{ review.title }}</a></h2>
+            {% endif %}
+        </div>
+    {% endfor %}
+    <br><br><br><hr>
+    <p align="center"><a href="{% url 'new' %}">글쓰기</a></p>
+</body>
