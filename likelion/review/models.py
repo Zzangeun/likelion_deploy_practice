@@ -6,12 +6,12 @@ class Review(models.Model):
     text = models.TextField()
     author = models.ForeignKey('auth.User', on_delete = models.CASCADE)
 
-    short_title=list(title)
+    # short_title=list(title)
 
-    if len(title)>6 :
-        short_title = title[0:6] + "..."
-    else :
-        short_title = title
+    # if len(title)>6 :
+    #     short_title = title[0:6] + "..."
+    # else :
+    #     short_title = title
 
     def __str__(self):
         return self.short_title
