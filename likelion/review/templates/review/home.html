@@ -31,12 +31,13 @@
     <br><br><br><hr>
     <br><br>
 
+
     {% for review in reviews.all %}
         <div>
             {% if user.is_active %}
-            <h2 align="center"><a href="{% url 'detail' review.id %}">{{ review.title }}</a></h2>
+            <h3 align="center"><a href="{% url 'detail' review.id %}">{{review.summary}}</a></h3>
             {% else %}
-            <h2 align="center"><a href="{% url 'accounts:signup' %}">{{ review.title }}</a></h2>
+            <h3 align="center"><a href="{% url 'accounts:signup' %}">{{review.summary}}</a></h3>
             {% endif %}
         </div>
     {% endfor %}

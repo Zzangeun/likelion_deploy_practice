@@ -6,15 +6,17 @@ class Review(models.Model):
     text = models.TextField()
     author = models.ForeignKey('auth.User', on_delete = models.CASCADE)
 
-    # short_title=list(title)
-
-    # if len(title)>6 :
-    #     short_title = title[0:6] + "..."
-    # else :
-    #     short_title = title
-
     def __str__(self):
-        return self.short_title
+        return self.title
+
+    def summary(self):
+        a =[]
+        a.append(self.title)
+
+        if len(a[-1])>6:
+            return self.title[:6]+'...'
+        else:
+            return self.title
 
 class Comment(models.Model):
     review = models.ForeignKey('review.Review', related_name='comments', on_delete=models.CASCADE)

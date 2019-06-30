@@ -51,7 +51,7 @@ def add_comment(request, review_id):
             comment.save()
     return redirect('detail', review_id=review.pk)
 
-def delete_comment(request, review_id):
+def delete_comment(request, comment_id):
     comment = get_object_or_404(Comment, pk = comment_id)
     review = comment.review
     comment.delete()
